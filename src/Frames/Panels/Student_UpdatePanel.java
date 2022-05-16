@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Frames.Panels.Student_ListPanel;
 
 /**
  *
@@ -204,6 +206,7 @@ public class Student_UpdatePanel extends javax.swing.JPanel {
             PreparedStatement p=con.prepareStatement(sql);
             p.execute();
                 JOptionPane.showMessageDialog(null,"Update successfully");
+            
             p.close();
             
         } catch (SQLException ex) {
