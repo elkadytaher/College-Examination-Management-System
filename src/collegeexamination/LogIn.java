@@ -143,9 +143,9 @@ public class LogIn extends javax.swing.JFrame {
                 case 1:
                     {
                         this.dispose();
-                        Techer l = new Techer();
+                        Lecturer_Frames.Exam l = new Lecturer_Frames.Exam();
                         l.setLocation(400, 200);
-                        l.setSize(308, 300);
+                        //l.setSize(308, 300);
                         l.setVisible(true);
                         break;
                     }

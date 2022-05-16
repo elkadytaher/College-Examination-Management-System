@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author vbnfv
  */
+
 public class Student_ListPanel extends javax.swing.JPanel {
 
     /**
@@ -34,6 +35,7 @@ public class Student_ListPanel extends javax.swing.JPanel {
     public JTable gettable(){
         return jTable1;
     }
+    
     
 //    private void show_data()
 //    {
@@ -115,6 +117,11 @@ public class Student_ListPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -130,6 +137,10 @@ public class Student_ListPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        jTable1.setModel(cistomModel(jTable1));
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
