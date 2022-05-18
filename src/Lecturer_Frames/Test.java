@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import database.Test_database;
 /**
  *
  * @author pc
@@ -23,16 +24,18 @@ public class Test extends javax.swing.JFrame {
      * Creates new form question
      */
     
-    
+    Test_database sourse=new Test_database();
     public Test() {
         initComponents();
         try {
             connect();
             First();
+           
         } catch (SQLException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
         LoadQuestion();
+        NullAllGivenAnswers();
     }
     Connection con;
     PreparedStatement pst, cs;
@@ -42,62 +45,41 @@ public class Test extends javax.swing.JFrame {
     Statement stat;
     int answercheck =0;
     int marks=0;
-     public boolean answerCheck()
-            
+     public boolean answerCheck()   
         {
             String answerAnswer="";
-
             if(r1.isSelected())
             {
                 answerAnswer = r1.getText();
-
             }
-
            else if(r2.isSelected())
             {
                 answerAnswer = r2.getText();
-
             }
-
                else if(r3.isSelected())
             {
                 answerAnswer = r3.getText();
-
             }
-
                 else if(r4.isSelected())
             {
-
                 answerAnswer = r4.getText();
-
-            }
-           
+            }           
             if(answerAnswer.equals(cor) && (answer == null  || !answer.equals(cor)))
             {
-                marks = marks + 1;
-          
-                markLabel.setText(String.valueOf(marks));
-               
-             
-            }
-            
+                marks = marks + 1;      
+                markLabel.setText(String.valueOf(marks));             
+            }            
            else if(!answerAnswer.equals(cor) && answer != null)
-            {
-                
+            {               
                 // Only deduct if marks greater than zero
-                if( marks > 0){
-        
-                marks = marks - 1;
-                
-                }
-               
-               
-                markLabel.setText(String.valueOf(marks));
-               
-
+                if( marks > 0){        
+                marks = marks - 1;             
+                }                          
+                markLabel.setText(String.valueOf(marks));             
             }
             // use to store answers
             if(!answerAnswer.equals("")){
+                //updateFunction(String answerAnswer,JLabel jLabel2);
                 try {
                     String query = "UPDATE Question SET Student_answer = ? WHERE question = ?";
                     pst = con.prepareStatement(query);
@@ -115,7 +97,7 @@ public class Test extends javax.swing.JFrame {
 }
      private void NullAllGivenAnswers(){
              // here we have to call this method
-    try {
+        try {
                     String query = "UPDATE Question SET Student_answer = ?";
                     pst = con.prepareStatement(query);
                     pst.setString(1, null);
@@ -177,6 +159,7 @@ public class Test extends javax.swing.JFrame {
         
     }
     public void First(){
+        //f
         try {
             con=connect();
             String query = "select * from Question";
